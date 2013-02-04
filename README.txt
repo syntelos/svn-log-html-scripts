@@ -9,9 +9,12 @@ Overview
 
 Usage
 
-  ./log-create.sh
+  ./log-create.sh [limit]
 
       Create log-VERSION.txt and log-VERSION.html
+
+      Optionally define the number of svn revisions to log with the
+      argument 'limit'
 
   ./log-clear.sh
 
