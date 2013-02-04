@@ -24,6 +24,10 @@ then
 else
     if name=log-$(./version.sh)
     then
+        #
+        # Discard 1>svn "D file"
+        # because it's confusing with the following 'svn st'
+        #
         if 1>/dev/null 2>/dev/null svn delete ${name}.{txt,html}
         then
             svn st
