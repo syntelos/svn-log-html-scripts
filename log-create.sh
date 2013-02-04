@@ -31,7 +31,7 @@ fi
 if name=log-$(./version.sh)
 then
 
-    if svn log --limit 9 > ${name}.txt
+    if svn log --limit ${limit} > ${name}.txt
     then
         if cat ${name}.txt | ./log-html.sh ${name}.txt
         then
