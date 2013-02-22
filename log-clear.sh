@@ -4,7 +4,7 @@ function usage {
     cat<<EOF>&2
 Usage
 
-    $0
+    $0 [version argument]
 
 Description
 
@@ -17,12 +17,23 @@ EOF
 #
 # main
 #
+versarg='-r'
 
 if [ -n "${1}" ]
 then
-    usage
-else
-    if name=log-$(./version.sh)
+    case "${1}" in
+        --r|-r)
+            versarg='-r';;
+        --i|-i)
+            versarg='-i';;
+        *)
+            usage ;;
+    esac
+fi
+
+if version=$(./version.sh ${versarg})
+then
+    if name=log-${version}
     then
         #
         # Discard 1>svn "D file"
@@ -41,7 +52,9 @@ EOF
         cat<<EOF>&2
 Error in 'name=log-\$(./version.sh)'
 EOF
-exit 1
+        exit 1
     fi
-fi
 
+else
+    exit 1
+fi
